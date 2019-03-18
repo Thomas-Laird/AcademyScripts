@@ -1,0 +1,17 @@
+#!/bin/bash
+
+locale-gen en_GB.UTF-8
+update-locale LANG=en_GB.UTF-8
+apt-get update -y
+DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade
+apt-get install apache2 php libapache2-mod-php awscli -y
+touch index.php
+rm -rf /var/www/html/*
+aws s3 cp --recursive s3://bvdevopsthomas/scripts/phpweb /var/www/html/
+aws ec2 associate-address --instance-id $(/usr/bin/curl -s http://169.254.169.254/latest/meta-data/instance-id) --public-ip 34.202.135.240 --regin us-east-1
+
+
+
+
+
+  
