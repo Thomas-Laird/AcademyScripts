@@ -1,0 +1,10 @@
+wget https://github.com/bazaarvoice/emodb/releases/download/emodb-5.7.1/emodb-5.7.1-binaries.tar.gz
+tar -xzf emodb-5.7.1-binaries.tar.gz
+
+#Convension: run background process in  /opt directory
+cd /opt
+mkdir emodb
+mv /emodb-5.7.1/* ./emodb/
+apt install openjdk-8-jdk
+update-alternatives --config java
+./start-local.sh
